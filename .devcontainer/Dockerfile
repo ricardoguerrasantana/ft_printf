@@ -19,6 +19,9 @@ RUN apt-get update && \
     libcriterion-dev \
     # Install Valgrind for memory leak detection
     valgrind \
+	# Coverage
+	gcovr \
+	lcov \
     # remove the package lists to free up space
     && rm -rf /var/lib/apt/lists/*
 
