@@ -4,7 +4,6 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "editor.tabSize": 4,
         "files.trimTrailingWhitespace": false,
         "files.insertFinalNewline": true
       },
