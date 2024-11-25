@@ -5,7 +5,10 @@
     "vscode": {
       "settings": {
         "files.trimTrailingWhitespace": false,
-        "files.insertFinalNewline": true
+        "files.insertFinalNewline": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": false
       },
       "extensions": [
         "ms-vscode.cpptools",                   // C/C++ extension
