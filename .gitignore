@@ -53,3 +53,12 @@ dkms.conf
 
 # .DS_store files
 .DS_store
+
+# coverage files
+coverage.html
+coverage.xml
+*.gcda
+*.gcno
+
+# test runner
+test_runner
