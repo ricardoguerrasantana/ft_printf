@@ -12,16 +12,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-	
-	# Install dependencies
+    # Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v4
+    # Install dependencies
     - name: Install dependencies
       run:  sudo apt-get update && sudo apt-get install -y gcc make libcritirion-dev
-	
-	  # Build
+    # Build
     - name: Build project
       run: make
-
-	# Test
+    # Test
     - name: Run tests
       run: make test
