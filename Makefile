@@ -53,6 +53,7 @@ test: tclean $(TEST_RUNNER)
 	@echo "Running tests..."
 	./$(TEST_RUNNER)
 
+# Test rule with TAP output format
 test-tap: tclean $(TEST_RUNNER)
 	@echo "Running tests..."
 	./$(TEST_RUNNER) --tap
@@ -65,9 +66,13 @@ tclean:
 $(TEST_RUNNER): $(NAME)
 	$(CC) $(CFLAGS) $(COVERAGE_FLAGS) $(TEST_FLAGS) -o $(TEST_RUNNER) $(TESTS) $(NAME)
 
+# Test with valgrind
+valgrind: $(TEST_RUNNER)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_RUNNER)
+
 # Coverage rule
 coverage: test
 	gcovr -r . --branches --exclude-directories=obj --xml -o coverage.xml --gcov-ignore-parse-errors
 	gcovr -r . --branches --exclude-directories=obj --html -o coverage.html --gcov-ignore-parse-errors
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test test-tap tclean valgrind coverage
