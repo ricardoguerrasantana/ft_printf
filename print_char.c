@@ -6,7 +6,7 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 06:28:04 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/11/25 06:28:08 by ricguerr         ###   ########.fr       */
+/*   Updated: 2024/11/25 10:11:56 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	print_char(int c)
 {
-	write(1, &c, 1);
-	return (1);
+	if (c == '\0')
+		return (0); // return 0 if the character is the null character
+	return (write(1, &c, 1));
 }
