@@ -9,6 +9,7 @@ TEST_RUNNER = test_runner
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I.
+COVERAGE_FLAGS = -fprofile-arcs -ftest-coverage
 TEST_FLAGS = -lcriterion
 
 # Directories
@@ -48,11 +49,25 @@ fclean: clean
 re: fclean all
 
 # Test rule
-test: $(TEST_RUNNER)
+test: tclean $(TEST_RUNNER)
+	@echo "Running tests..."
 	./$(TEST_RUNNER)
+
+test-tap: tclean $(TEST_RUNNER)
+	@echo "Running tests..."
+	./$(TEST_RUNNER) --tap
+
+# Test clean rule
+tclean:
 	rm -f $(TEST_RUNNER)
 
+# Build test runner
 $(TEST_RUNNER): $(NAME)
-	$(CC) $(CFLAGS) $(TEST_FLAGS) -o $(TEST_RUNNER) $(TESTS) $(NAME)
+	$(CC) $(CFLAGS) $(COVERAGE_FLAGS) $(TEST_FLAGS) -o $(TEST_RUNNER) $(TESTS) $(NAME)
+
+# Coverage rule
+coverage: test
+	gcovr -r . --branches --exclude-directories=obj --xml -o coverage.xml --gcov-ignore-parse-errors
+	gcovr -r . --branches --exclude-directories=obj --html -o coverage.html --gcov-ignore-parse-errors
 
 .PHONY: all clean fclean re test
