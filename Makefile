@@ -1,19 +1,25 @@
 #	Makefile for ft_printf project
+
+# Name of the library
 NAME = libftprintf.a
+
+# Test runner
+TEST_RUNNER = test_runner
 
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I.
 TEST_FLAGS = -lcriterion
 
-# Source files
-SRC = $(wildcard *.c)
-
-# Object directory
+# Directories
+SRC_DIR = .
 OBJ_DIR = obj
+TEST_DIR = tests
 
-# Object files
+# Files
+SRC = $(wildcard $(SRC_DIR)/*.c)
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
+TESTS = $(wildcard $(TEST_DIR)/*.c)
 
 # Default target
 all: $(NAME)
@@ -32,18 +38,21 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 
 # Clean rule
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ) $(OBJ_DIR)
 
 # Full clean rule
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(TEST_RUNNER)
 
 # Remake rule
 re: fclean all
 
 # Test rule
-test: $(NAME)
-	$(CC) $(CFLAGS) $(TEST_FLAGS) -o tests/tests tests/*.c $(NAME)
-	./tests/tests
+test: $(TEST_RUNNER)
+	./$(TEST_RUNNER)
+	rm -f $(TEST_RUNNER)
+
+$(TEST_RUNNER): $(NAME)
+	$(CC) $(CFLAGS) $(TEST_FLAGS) -o $(TEST_RUNNER) $(TESTS) $(NAME)
 
 .PHONY: all clean fclean re test
