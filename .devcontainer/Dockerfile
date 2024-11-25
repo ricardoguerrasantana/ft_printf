@@ -15,6 +15,11 @@ RUN apt-get update && \
     curl \
     clang \     
     libbsd-dev \
+    # Install Criterion for testing
+    libcriterion-dev \
+    # Install Valgrind for memory leak detection
+    valgrind \
+    # remove the package lists to free up space
     && rm -rf /var/lib/apt/lists/*
 
 # Create a virtual environment and install norminette
@@ -30,4 +35,6 @@ RUN bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/maste
 
 # Copy the local .vimrc into the container
 COPY .vimrc /root/.vimrc
+# Copy the local .bashrc into the container
+# Uncomment the line below if you want to use the .bashrc file
 # COPY .bashrc /root/.bashrc
