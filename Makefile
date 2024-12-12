@@ -9,13 +9,14 @@ TEST_RUNNER = test_runner
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I.
-COVERAGE_FLAGS = -fprofile-arcs -ftest-coverage
+COVERAGE_FLAGS = -coverage -g -fprofile-arcs -ftest-coverage
 TEST_FLAGS = -lcriterion
 
 # Directories
 SRC_DIR = .
 OBJ_DIR = obj
 TEST_DIR = tests
+COV_DIR = coverage
 
 # Files
 SRC = $(wildcard $(SRC_DIR)/*.c)
@@ -38,7 +39,7 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean rule
-clean:
+clean: tclean covclean
 	rm -rf $(OBJ) $(OBJ_DIR)
 
 # Full clean rule
@@ -70,9 +71,16 @@ $(TEST_RUNNER): $(NAME)
 valgrind: $(TEST_RUNNER)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(TEST_RUNNER)
 
+# Create coverage directory
+$(COV_DIR):
+	mkdir -p $(COV_DIR)
+
 # Coverage rule
-coverage: test
-	gcovr -r . --branches --exclude-directories=obj --xml -o coverage.xml --gcov-ignore-parse-errors
-	gcovr -r . --branches --exclude-directories=obj --html -o coverage.html --gcov-ignore-parse-errors
+cov: covclean test $(COV_DIR)
+	gcovr -r . --branches --exclude-directories=obj-tests --xml -o $(COV_DIR)/coverage.xml --gcov-ignore-parse-errors
+	gcovr -r . --branches --exclude-directories=obj-tests --html -o $(COV_DIR)/coverage.html --gcov-ignore-parse-errors
+
+covclean:
+	rm -rf $(COV_DIR) coverage.xml coverage.html *.gcov *.gcda *.gcno
 
 .PHONY: all clean fclean re test test-tap tclean valgrind coverage
