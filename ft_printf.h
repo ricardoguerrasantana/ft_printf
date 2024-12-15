@@ -6,7 +6,7 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 06:28:38 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 03:17:55 by ricguerr         ###   ########.fr       */
+/*   Updated: 2024/12/15 06:01:16 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # include <stdlib.h>
 
 int	ft_printf(const char *format, ...);
+int	ft_handle_conversions(char specifier, va_list *args);
 int	ft_print_char(int c);
 int	ft_print_string(char *str);
 int	ft_print_pointer(void *ptr);
+int	ft_print_number(int nb);
 
 #endif // FT_PRINTF_H

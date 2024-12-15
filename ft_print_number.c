@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_number.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 05:32:34 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 06:00:21 by ricguerr         ###   ########.fr       */
+/*   Created: 2024/12/15 04:49:03 by ricguerr          #+#    #+#             */
+/*   Updated: 2024/12/15 05:22:24 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_print_number(int i)
 {
-	va_list	args;
-	int		printed_chars;
+	int	len;
 
-	va_start(args, format);
-	printed_chars = 0;
-	while (*format)
+	len = 0;
+	if (i < 0)
+		len += write(1, "-", 1);
+	if (i >= -9 && i < 0)
+		len += ft_print_number(-i);
+	if (i >= 0 && i <= 9)
+		len += write(1, (char []){'0' + i}, 1);
+	if (i < -9)
 	{
-		if (*format == '%' && *(format + 1))
-		{
-			format++;
-			printed_chars += ft_handle_conversions(*format, &args);
-		}
-		else
-			printed_chars += write(1, format, 1);
-		format++;
+		len += ft_print_number(-(i / 10));
+		len += ft_print_number(-(i % 10));
 	}
-	va_end(args);
-	return (printed_chars);
+	if (i > 9)
+	{
+		len += ft_print_number(i / 10);
+		len += ft_print_number(i % 10);
+	}
+	return (len);
 }

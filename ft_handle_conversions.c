@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_handle_conversions.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 05:32:34 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 06:00:21 by ricguerr         ###   ########.fr       */
+/*   Created: 2024/12/15 05:31:29 by ricguerr          #+#    #+#             */
+/*   Updated: 2024/12/15 06:09:34 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	ft_handle_conversions(char specifier, va_list *args)
 {
-	va_list	args;
-	int		printed_chars;
-
-	va_start(args, format);
-	printed_chars = 0;
-	while (*format)
-	{
-		if (*format == '%' && *(format + 1))
-		{
-			format++;
-			printed_chars += ft_handle_conversions(*format, &args);
-		}
-		else
-			printed_chars += write(1, format, 1);
-		format++;
-	}
-	va_end(args);
-	return (printed_chars);
+	if (specifier == 'c')
+		return (ft_print_char(va_arg(*args, int)));
+	if (specifier == 's')
+		return (ft_print_string(va_arg(*args, char *)));
+	if (specifier == 'p')
+		return (ft_print_pointer(va_arg(*args, void *)));
+	if (specifier == 'd' || specifier == 'i')
+		return (ft_print_number(va_arg(*args, int)));
+	else
+		return (write(1, &specifier, 1));
 }
