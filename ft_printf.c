@@ -6,12 +6,11 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 05:32:34 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 02:36:01 by ricguerr         ###   ########.fr       */
+/*   Updated: 2024/12/15 02:45:39 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int	ft_printf(const char *format, ...)
 {
@@ -26,9 +25,9 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			if (*format == 'c')
-				printed_chars +=  (ft_print_char(va_arg(args, int)));
+				printed_chars += (ft_print_char(va_arg(args, int)));
 			else if (*format == 's')
-				printed_chars +=  (ft_print_string(va_arg(args, char *)));
+				printed_chars += (ft_print_string(va_arg(args, char *)));
 			else
 				printed_chars += write(1, format, 1);
 		}

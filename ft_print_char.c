@@ -6,7 +6,7 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 06:28:04 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 02:08:22 by ricguerr         ###   ########.fr       */
+/*   Updated: 2024/12/15 02:42:07 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_print_char(int c)
 {
 	if (c == '\0')
-		return (0); // return 0 if the character is the null character
+		return (0);
 	return (write(1, &c, 1));
 }
