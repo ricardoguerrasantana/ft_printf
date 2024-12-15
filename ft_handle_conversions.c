@@ -6,7 +6,7 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 05:31:29 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 06:56:19 by ricguerr         ###   ########.fr       */
+/*   Updated: 2024/12/15 07:10:39 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	ft_handle_conversions(char specifier, va_list *args)
 		return (ft_print_number(va_arg(*args, int)));
 	if (specifier == 'u')
 		return (ft_print_unsigned(va_arg(*args, unsigned int)));
+	if (specifier == 'x')
+		return (ft_print_hexadecimal(va_arg(*args, unsigned int)));
 	else
 		return (write(1, &specifier, 1));
 }
