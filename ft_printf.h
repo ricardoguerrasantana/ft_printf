@@ -6,7 +6,7 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 06:28:38 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 07:10:04 by ricguerr         ###   ########.fr       */
+/*   Updated: 2024/12/15 07:41:43 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	ft_print_pointer(void *ptr);
 int	ft_print_number(int nb);
 int	ft_print_unsigned(unsigned int nb);
 int	ft_print_hexadecimal(unsigned int nb);
+int	ft_print_hexadecimal_upper(unsigned int nb);
 
 #endif // FT_PRINTF_H
