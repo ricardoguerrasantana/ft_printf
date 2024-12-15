@@ -6,7 +6,7 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 05:32:34 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 02:45:39 by ricguerr         ###   ########.fr       */
+/*   Updated: 2024/12/15 03:18:39 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_printf(const char *format, ...)
 				printed_chars += (ft_print_char(va_arg(args, int)));
 			else if (*format == 's')
 				printed_chars += (ft_print_string(va_arg(args, char *)));
+			else if (*format == 'p')
+				printed_chars += (ft_print_pointer(va_arg(args, void *)));
 			else
 				printed_chars += write(1, format, 1);
 		}
