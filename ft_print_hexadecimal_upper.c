@@ -6,13 +6,13 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 07:08:57 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 07:44:10 by ricguerr         ###   ########.fr       */
+/*   Updated: 2024/12/15 07:46:29 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_hexadecimal_upper(unsigned int nb)
+int	ft_print_hexadecimal_upper(unsigned int nb)
 {
 	int	len;
 
@@ -24,6 +24,5 @@ int ft_print_hexadecimal_upper(unsigned int nb)
 		len += ft_print_hexadecimal_upper(nb / 16);
 		len += ft_print_hexadecimal_upper(nb % 16);
 	}
-	return len;
+	return (len);
 }
-
