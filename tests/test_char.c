@@ -8,6 +8,13 @@ Test(ft_printf, prints_character, .init = setup)
     cr_assert_stdout_eq_str("Char: A\n");
 }
 
+// Test printing multiple characters
+Test(ft_printf, prints_multiple_characters, .init = setup)
+{
+    ft_printf("Chars: %c, %c, %c\n", 'A', 'B', 'C');
+    cr_assert_stdout_eq_str("Chars: A, B, C\n");
+}
+
 // Test printing a null character
 Test(ft_printf, prints_null_character, .init = setup)
 {

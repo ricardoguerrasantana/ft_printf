@@ -53,6 +53,7 @@ re: fclean all
 test: tclean $(TEST_RUNNER)
 	@echo "Running tests..."
 	./$(TEST_RUNNER)
+	rm -f $(TEST_RUNNER)
 
 # Test rule with TAP output format
 test-tap: tclean $(TEST_RUNNER)
@@ -65,7 +66,7 @@ tclean:
 
 # Build test runner
 $(TEST_RUNNER): $(NAME)
-	$(CC) $(CFLAGS) $(COVERAGE_FLAGS) $(TEST_FLAGS) -o $(TEST_RUNNER) $(TESTS) $(NAME)
+	$(CC) $(CFLAGS) $(TEST_FLAGS) -o $(TEST_RUNNER) $(TESTS) $(NAME)
 
 # Test with valgrind
 valgrind: $(TEST_RUNNER)
