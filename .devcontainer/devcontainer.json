@@ -18,7 +18,8 @@
         "ms-azuretools.vscode-docker",          // Docker extension
         "secondfry.42header-long",              // 42 header extension
         "ms-vscode.makefile-tools",             // Makefile extension
-        "github.vscode-github-actions"         // GitHub Actions extension
+        "github.vscode-github-actions",         // GitHub Actions extension
+		"github.copilot"
       ]
     }
   },
