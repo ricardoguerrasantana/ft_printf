@@ -56,3 +56,28 @@ Test(ft_printf, prints_extended_ascii_character, .init = setup)
     ft_printf("Char: %c\n", 255); // Extended ASCII value
     cr_assert_stdout_eq_str("Char: \xFF\n");
 }
+
+
+Test(ft_printf, francinette_test_5, .init = setup)
+{
+	ft_printf(" %c %c %c ", '0', 0, '1');
+	cr_assert_stdout_eq_str(" 0  1 ");
+}
+
+Test(ft_printf, francinette_test_8, .init = setup)
+{
+	ft_printf(" %c %c %c ", '2', '1', 0);
+	cr_assert_stdout_eq_str(" 2 1  ");
+}
+
+Test(ft_printf, francinette_test_9, .init = setup)
+{
+	ft_printf(" %c %c %c ", 0, '1', '2');
+	cr_assert_stdout_eq_str("  1 2 ");
+}
+
+Test(ft_printf, francinette_test_category_mix, .init = setup)
+{
+	ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+	cr_assert_stdout_eq_str("%A%42%42%42%42%2a%2A%% %B%-42%-42%-42%4294967254%ffffffd6%2A%% %C%0%0%0%0%0%2A%% %");
+}
