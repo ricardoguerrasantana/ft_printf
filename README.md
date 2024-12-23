@@ -3,8 +3,6 @@
 ## Overview
 The `ft_printf` project is a reimplementation of the standard C `printf` function, capable of formatted output. This implementation supports a variety of format specifiers and adheres to the constraints provided by the subject. The goal of the project is to deepen the understanding of variadic functions and efficient string handling in C.
 
----
-
 ## Features
 The `ft_printf` implementation supports the following format specifiers:
 
@@ -17,8 +15,6 @@ The `ft_printf` implementation supports the following format specifiers:
 | `%u`      | Prints an unsigned decimal integer.          |
 | `%x`      | Prints an unsigned hexadecimal (lowercase).  |
 | `%X`      | Prints an unsigned hexadecimal (uppercase).  |
-
----
 
 ## Directory Structure
 
@@ -49,8 +45,6 @@ The `ft_printf` implementation supports the following format specifiers:
 └── README.md          # Project documentation
 ```
 
----
-
 ## Compilation
 The project can be compiled using the provided `Makefile`. The default target generates the `libftprintf.a` library.
 
@@ -73,8 +67,6 @@ To rebuild everything:
 make re
 ```
 
----
-
 ## Testing
 
 ### Unit Testing with Criterion
@@ -95,8 +87,6 @@ To run the tests with Valgrind for memory leak detection:
 ```bash
 make valgrind
 ```
-
----
 
 ## Examples
 Here are some usage examples of the `ft_printf` function:
@@ -125,8 +115,6 @@ ft_printf("Hexadecimal (uppercase): %X\n", 255);
 // Output: Hexadecimal (uppercase): FF
 ```
 
----
-
 ## Norminette
 Ensure the project adheres to 42's coding standard by running:
 
@@ -134,12 +122,8 @@ Ensure the project adheres to 42's coding standard by running:
 make norm
 ```
 
----
-
 ## License
 This project is developed as part of the 42 curriculum and is subject to the rules and constraints of the program.
-
----
 
 ## Author
 Ricardo Guerra Santana
