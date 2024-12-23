@@ -1,95 +1,145 @@
 # ft_printf
 
-This repository contains my implementation of the `printf` function in C as part of the 42 school curriculum.
+## Overview
+The `ft_printf` project is a reimplementation of the standard C `printf` function, capable of formatted output. This implementation supports a variety of format specifiers and adheres to the constraints provided by the subject. The goal of the project is to deepen the understanding of variadic functions and efficient string handling in C.
 
-## Project Overview
+---
 
-The goal of the `ft_printf` project is to recreate the standard C library function `printf`, with support for variable argument lists and a range of format specifiers. This project helps develop a deeper understanding of variadic functions, memory management, and string formatting in C.
+## Features
+The `ft_printf` implementation supports the following format specifiers:
 
-## Current Status
+| Specifier | Description                                   |
+|-----------|-----------------------------------------------|
+| `%c`      | Prints a single character.                   |
+| `%s`      | Prints a string (null-safe).                 |
+| `%p`      | Prints a pointer in hexadecimal format.      |
+| `%d`/`%i` | Prints a signed decimal integer.             |
+| `%u`      | Prints an unsigned decimal integer.          |
+| `%x`      | Prints an unsigned hexadecimal (lowercase).  |
+| `%X`      | Prints an unsigned hexadecimal (uppercase).  |
 
-This project is **in progress**. Below is an outline of the planned features and implementation details. Updates will be made as the project develops.
-
-## Features (Planned)
-
-- [ ] Support for mandatory conversion specifiers:
-  - `%c` - Character
-  - `%s` - String
-  - `%p` - Pointer
-  - `%d` and `%i` - Signed integers
-  - `%u` - Unsigned integers
-  - `%x` and `%X` - Hexadecimal (lowercase and uppercase)
-  - `%%` - Percent sign
-- [ ] Error-free memory management
-- [ ] Compliance with 42's Norminette coding standard
-- [ ] Makefile with standard rules:
-  - `all`, `clean`, `fclean`, `re`, and `bonus`
-- [ ] (Optional) Bonus features:
-  - Field width, precision, and flags support
+---
 
 ## Directory Structure
 
 ```
-ft_printf/
-├── Makefile           # Builds the library
-├── ft_printf.h        # Header file with function prototypes
-├── ft_printf.c        # Core implementation of ft_printf
-├── conversions.c      # Format specifier handling
-├── utils.c            # Helper functions
-└── README.md          # Project documentation (this file)
+.
+├── src/               # Source files for `ft_printf`
+│   ├── ft_printf.c
+│   ├── ft_handle_conversions.c
+│   ├── ft_print_char.c
+│   ├── ft_print_string.c
+│   ├── ft_print_pointer.c
+│   ├── ft_print_number.c
+│   ├── ft_print_unsigned.c
+│   ├── ft_print_hexadecimal.c
+│   ├── ft_print_hexadecimal_upper.c
+├── include/           # Header files
+│   └── ft_printf.h
+├── obj/               # Compiled object files (generated automatically)
+├── tests/             # Test cases for Criterion framework
+│   ├── test_char.c
+│   ├── test_string.c
+│   ├── test_pointer.c
+│   ├── test_number.c
+│   ├── test_unsigned.c
+│   ├── test_hexadecimal.c
+│   ├── test_hexadecimal_upper.c
+├── Makefile           # Compilation and testing automation
+└── README.md          # Project documentation
 ```
 
-## How to Use
+---
 
-### Compilation
-
-To build the project, run:
+## Compilation
+The project can be compiled using the provided `Makefile`. The default target generates the `libftprintf.a` library.
 
 ```bash
 make
 ```
 
-This will generate the `libftprintf.a` library.
-
-### Example Usage
-
-```c
-#include "ft_printf.h"
-
-int main() {
-    ft_printf("Hello, %s! The number is %d.\n", "world", 42);
-    return 0;
-}
-```
-
-Compile your program with the `libftprintf.a` library:
-
-```bash
-gcc -o example example.c libftprintf.a
-```
-
-### Cleaning Up
-
-To remove object files, run:
-
+To clean object files:
 ```bash
 make clean
 ```
 
-To remove the library and object files, run:
-
+To clean object files and the library:
 ```bash
 make fclean
 ```
 
-## Testing
-
-Tests are being developed to ensure `ft_printf` matches the behavior of the standard `printf` function. A testing framework or custom test cases may be added later.
-
-## License
-
-This project is part of the 42 school curriculum and follows its academic rules. Please refrain from unauthorized copying or sharing.
+To rebuild everything:
+```bash
+make re
+```
 
 ---
 
-_This README will be updated as the project progresses._
+## Testing
+
+### Unit Testing with Criterion
+The `tests/` directory contains unit tests for all implemented features. You can run the tests using the following command:
+
+```bash
+make test
+```
+
+### Testing with TAP Format
+To generate test output in the TAP (Test Anything Protocol) format:
+```bash
+make test-tap
+```
+
+### Memory Leak Detection with Valgrind
+To run the tests with Valgrind for memory leak detection:
+```bash
+make valgrind
+```
+
+---
+
+## Examples
+Here are some usage examples of the `ft_printf` function:
+
+### Basic Examples
+```c
+ft_printf("Character: %c\n", 'A');
+// Output: Character: A
+
+ft_printf("String: %s\n", "Hello, World!");
+// Output: String: Hello, World!
+
+ft_printf("Pointer: %p\n", &main);
+// Output: Pointer: 0x12345678 (example address)
+
+ft_printf("Decimal: %d\n", 42);
+// Output: Decimal: 42
+
+ft_printf("Unsigned: %u\n", 300);
+// Output: Unsigned: 300
+
+ft_printf("Hexadecimal (lowercase): %x\n", 255);
+// Output: Hexadecimal (lowercase): ff
+
+ft_printf("Hexadecimal (uppercase): %X\n", 255);
+// Output: Hexadecimal (uppercase): FF
+```
+
+---
+
+## Norminette
+Ensure the project adheres to 42's coding standard by running:
+
+```bash
+make norm
+```
+
+---
+
+## License
+This project is developed as part of the 42 curriculum and is subject to the rules and constraints of the program.
+
+---
+
+## Author
+Ricardo Guerra Santana
