@@ -14,8 +14,10 @@ Test(ft_printf, valid_pointer, .init = setup)
 // Test printing a null pointer
 Test(ft_printf, null_pointer, .init = setup)
 {
-    ft_printf("Address: %p\n", NULL);
-    cr_assert_stdout_eq_str("Address: 0x0\n"); // Expected output for NULL
+	ft_printf("Address: %p\n", NULL);
+	char expected[100];
+	sprintf(expected, "Address: %p\n", NULL);
+	cr_assert_stdout_eq_str(expected); // Compare output to standard printf
 }
 
 // Test printing multiple pointers
@@ -44,7 +46,9 @@ Test(ft_printf, max_address, .init = setup)
 {
     void *ptr = (void *)0xFFFFFFFFFFFFFFFF; // Simulate max pointer
     ft_printf("Max Address: %p\n", ptr);
-    cr_assert_stdout_eq_str("Max Address: 0xffffffffffffffff\n");
+	char expected[100];
+	sprintf(expected, "Max Address: %p\n", ptr);
+    cr_assert_stdout_eq_str(expected);
 }
 
 // Test printing a zero pointer
@@ -52,5 +56,7 @@ Test(ft_printf, zero_pointer, .init = setup)
 {
     void *ptr = (void *)0;
     ft_printf("Literal Zero: %p\n", ptr);
-    cr_assert_stdout_eq_str("Literal Zero: 0x0\n");
+	char expected[100];
+	sprintf(expected, "Literal Zero: %p\n", ptr);
+    cr_assert_stdout_eq_str(expected);
 }
