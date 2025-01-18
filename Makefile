@@ -53,7 +53,7 @@ norm:
 	@norminette -R CheckForbiddenSourceHeader $(SRC) $(INCLUDE)
 
 # Test rule
-test: tclean $(TEST_RUNNER)
+test: tclean fclean $(TEST_RUNNER)
 	@echo "Running tests..."
 	./$(TEST_RUNNER)
 	$(MAKE) tclean
