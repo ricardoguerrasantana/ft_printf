@@ -6,7 +6,7 @@
 /*   By: ricguerr <ricguerr@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 03:17:10 by ricguerr          #+#    #+#             */
-/*   Updated: 2024/12/15 03:51:20 by ricguerr         ###   ########.fr       */
+/*   Updated: 2025/01/18 06:03:05 by ricguerr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_print_pointer(void *ptr)
 	int				start;
 
 	if (!ptr)
-		return (write(1, "0x0", 3));
+		return (write(1, "(nil)", 5));
 	i = 15;
 	address = (unsigned long)ptr;
 	while (i >= 0)
